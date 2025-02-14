@@ -1,0 +1,73 @@
+{
+  "name": "trpc.trees",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": "20.x"
+  },
+  "scripts": {
+    "with-env": "dotenv",
+    "dev": "dotenv -- next dev",
+    "build": "npm run prisma:generate && next build",
+    "start": "next start",
+    "testing-build": "npm run prisma:reset && dotenv -- npm run build",
+    "testing-start": "dotenv -- npm run start",
+    "npm:deps": "ncu",
+    "npm:update-i": "ncu -i",
+    "npm:update-all": "ncu -u",
+    "prisma:migrate": "dotenv -- npx prisma migrate dev",
+    "prisma:generate": "dotenv -- npx prisma generate",
+    "prisma:deploy": "dotenv -- npx prisma migrate deploy",
+    "prisma:format": "dotenv -- npx prisma-case-format -p --table-case pascal,singular --field-case camel --enum-case pascal --map-table-case snake,plural --map-field-case snake --map-enum-case snake --file ./prisma/schema.prisma && prisma format && prisma generate",
+    "prisma:reset": "dotenv -- npx prisma migrate reset --force",
+    "prisma:seed": "dotenv -- npx prisma db seed",
+    "prisma:studio": "dotenv -- npx prisma studio",
+    "lint": "npx @biomejs/biome lint --write *",
+    "format": "npx @biomejs/biome check --write * && npm run prisma:format && tsc --noEmit --project tsconfig.json && npx eslint --fix ."
+  },
+  "dependencies": {
+    "@mantine/core": "^7.17.0",
+    "@mantine/hooks": "^7.17.0",
+    "@prisma/client": "^6.4.1",
+    "@tabler/icons-react": "^3.30.0",
+    "@tanstack/react-query": "^5.66.11",
+    "@trpc/client": "^11.0.0-rc.477",
+    "@trpc/next": "^11.0.0-rc.477",
+    "@trpc/react-query": "^11.0.0-rc.477",
+    "@trpc/server": "^11.0.0-rc.477",
+    "next": "15.2.0",
+    "react": "^19",
+    "react-dom": "^19",
+    "superjson": "^2.2.2",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.9.4",
+    "@eslint/js": "^9.21.0",
+    "@tailwindcss/postcss": "^4.0.9",
+    "@types/node": "^22.13.5",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@typescript-eslint/eslint-plugin": "^8.25.0",
+    "@typescript-eslint/parser": "^8.25.0",
+    "dotenv-cli": "^8.0.0",
+    "eslint": "^9.21.0",
+    "eslint-plugin-react": "^7.37.4",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
+    "globals": "^16.0.0",
+    "npm-check-updates": "^17.1.15",
+    "postcss": "^8.5.3",
+    "postcss-preset-mantine": "^1.17.0",
+    "postcss-simple-vars": "^7.0.1",
+    "prisma": "^6.4.1",
+    "prisma-case-format": "^2.2.1",
+    "tailwindcss": "^4.0.9",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.7.3",
+    "typescript-eslint": "^8.25.0"
+  },
+  "prisma": {
+    "seed": "dotenv -- ts-node -r tsconfig-paths/register --transpile-only --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
+  }
+}
