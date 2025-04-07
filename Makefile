@@ -69,10 +69,20 @@ package-dev:
 		npm install -D $$libs; \
 	fi
 
+## @description eslintを実行します
+## @usage make lint
+lint:
+	npm run eslint:fix
+
 ## @description フォーマットします
 ## @usage make format
 format:
-	npm run format
+	npm run format:fix
+
+## @description CIを実行します
+## @usage make ci
+ci:
+	npm run ci
 
 ## @description DBコンテナに入ります
 ## @usage make db-sh
